@@ -1,0 +1,22 @@
+{
+  "name": "solana-validator-dashboard",
+  "description": "Web3 Solana Validator Dashboard",
+  "type": "docker-compose",
+  "compose": "docker-compose.yml",
+  "environment": {
+    "SOLANA_RPC_URL": "https://api.mainnet-beta.solana.com",
+    "VALIDATOR_PUBKEY": "",
+    "ALERT_THRESHOLD": "95"
+  },
+  "domains": [
+    {
+      "domain": "valdash.yourdomain.com",
+      "port": 80
+    }
+  ],
+  "healthcheck": {
+    "path": "/",
+    "port": 80,
+    "interval": 30
+  }
+}

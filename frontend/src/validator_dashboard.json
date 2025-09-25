@@ -1,0 +1,205 @@
+{
+  "address": "9KxB22cPSBkKXJJ9wusjQkfeVUrbT5qzCWdhCpnW5dpC",
+  "metadata": {
+    "name": "validator_dashboard",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Solana Validator Dashboard Program"
+  },
+  "instructions": [
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "dashboard",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "set_alert_threshold",
+      "discriminator": [
+        143,
+        67,
+        31,
+        100,
+        94,
+        85,
+        252,
+        130
+      ],
+      "accounts": [
+        {
+          "name": "dashboard",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "dashboard"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "threshold",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "update_validator_stats",
+      "discriminator": [
+        69,
+        30,
+        242,
+        213,
+        134,
+        125,
+        215,
+        211
+      ],
+      "accounts": [
+        {
+          "name": "dashboard",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "dashboard"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "uptime",
+          "type": "u64"
+        },
+        {
+          "name": "stake_amount",
+          "type": "u64"
+        },
+        {
+          "name": "commission",
+          "type": "u8"
+        },
+        {
+          "name": "rewards",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "ValidatorDashboard",
+      "discriminator": [
+        187,
+        63,
+        30,
+        91,
+        97,
+        125,
+        214,
+        221
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "AlertTriggered",
+      "discriminator": [
+        53,
+        35,
+        91,
+        122,
+        2,
+        60,
+        83,
+        248
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "AlertTriggered",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "validator",
+            "type": "pubkey"
+          },
+          {
+            "name": "uptime",
+            "type": "u64"
+          },
+          {
+            "name": "threshold",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ValidatorDashboard",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "uptime",
+            "type": "u64"
+          },
+          {
+            "name": "stake_amount",
+            "type": "u64"
+          },
+          {
+            "name": "commission",
+            "type": "u8"
+          },
+          {
+            "name": "rewards",
+            "type": "u64"
+          },
+          {
+            "name": "alert_threshold",
+            "type": "u64"
+          },
+          {
+            "name": "last_updated",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ]
+}

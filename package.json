@@ -1,0 +1,17 @@
+{
+  "name": "solana-validator-dashboard",
+  "version": "1.0.0",
+  "description": "Web3 Solana Validator Dashboard",
+  "scripts": {
+    "dev": "concurrently \"npm run frontend:dev\" \"npm run backend:dev\"",
+    "frontend:dev": "cd frontend && npm run dev",
+    "backend:dev": "cd backend && cargo run",
+    "build": "npm run frontend:build && npm run backend:build",
+    "frontend:build": "cd frontend && npm run build",
+    "backend:build": "cd backend && cargo build --release",
+    "deploy": "npm run build && coolify deploy"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

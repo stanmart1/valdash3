@@ -1,0 +1,14 @@
+/Users/stanleyayo/Documents/web3/valdash/target/debug/deps/serde-98f241b9b8bf49ee.d: /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/lib.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/integer128.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/mod.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/de.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/ser.rs /Users/stanleyayo/Documents/web3/valdash/target/debug/build/serde-bd764674a9aec197/out/private.rs
+
+/Users/stanleyayo/Documents/web3/valdash/target/debug/deps/libserde-98f241b9b8bf49ee.rlib: /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/lib.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/integer128.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/mod.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/de.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/ser.rs /Users/stanleyayo/Documents/web3/valdash/target/debug/build/serde-bd764674a9aec197/out/private.rs
+
+/Users/stanleyayo/Documents/web3/valdash/target/debug/deps/libserde-98f241b9b8bf49ee.rmeta: /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/lib.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/integer128.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/mod.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/de.rs /Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/ser.rs /Users/stanleyayo/Documents/web3/valdash/target/debug/build/serde-bd764674a9aec197/out/private.rs
+
+/Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/lib.rs:
+/Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/integer128.rs:
+/Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/mod.rs:
+/Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/de.rs:
+/Users/stanleyayo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.226/src/private/ser.rs:
+/Users/stanleyayo/Documents/web3/valdash/target/debug/build/serde-bd764674a9aec197/out/private.rs:
+
+# env-dep:OUT_DIR=/Users/stanleyayo/Documents/web3/valdash/target/debug/build/serde-bd764674a9aec197/out
