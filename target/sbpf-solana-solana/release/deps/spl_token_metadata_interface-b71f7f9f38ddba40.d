@@ -1,0 +1,10 @@
+/build/target/sbpf-solana-solana/release/deps/spl_token_metadata_interface-b71f7f9f38ddba40.so: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/error.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/state.rs
+
+/build/target/sbpf-solana-solana/release/deps/libspl_token_metadata_interface-b71f7f9f38ddba40.rlib: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/error.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/state.rs
+
+/build/target/sbpf-solana-solana/release/deps/spl_token_metadata_interface-b71f7f9f38ddba40.d: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/error.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/state.rs
+
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/lib.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/error.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/instruction.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.6.0/src/state.rs:

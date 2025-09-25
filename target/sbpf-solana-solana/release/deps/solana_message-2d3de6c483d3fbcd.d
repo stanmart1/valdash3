@@ -1,0 +1,11 @@
+/build/target/sbpf-solana-solana/release/deps/libsolana_message-2d3de6c483d3fbcd.rmeta: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/compiled_instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/compiled_keys.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/inner_instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/legacy.rs
+
+/build/target/sbpf-solana-solana/release/deps/libsolana_message-2d3de6c483d3fbcd.rlib: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/compiled_instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/compiled_keys.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/inner_instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/legacy.rs
+
+/build/target/sbpf-solana-solana/release/deps/solana_message-2d3de6c483d3fbcd.d: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/compiled_instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/compiled_keys.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/inner_instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/legacy.rs
+
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/lib.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/compiled_instruction.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/compiled_keys.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/inner_instruction.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-message-2.4.0/src/legacy.rs:
