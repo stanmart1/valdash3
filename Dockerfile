@@ -1,8 +1,14 @@
-# Use Node.js 20.18.0 LTS
-FROM node:20.18.0-alpine
+# Use Node.js 20.18.1 LTS
+FROM node:20.18.1-alpine
 
-# Install Python and build tools
-RUN apk add --no-cache python3 make g++ py3-pip
+# Install system dependencies for native modules
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    linux-headers \
+    eudev-dev \
+    libusb-dev
 
 # Set working directory
 WORKDIR /app
@@ -11,8 +17,8 @@ WORKDIR /app
 COPY package*.json ./
 COPY .npmrc ./
 
-# Install dependencies
-RUN npm install --legacy-peer-deps --no-optional
+# Install dependencies with proper flags
+RUN npm install --legacy-peer-deps --omit=optional --ignore-scripts
 
 # Copy source code
 COPY . .
