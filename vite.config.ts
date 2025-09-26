@@ -15,10 +15,12 @@ export default defineConfig({
       process: 'process',
       stream: 'stream-browserify',
       util: 'util',
+      crypto: 'crypto-browserify',
     },
   },
   optimizeDeps: {
-    include: ['buffer', 'process'],
+    include: ['buffer', 'process', 'crypto-browserify'],
+    exclude: ['@solana/wallet-adapter-wallets'],
   },
   build: {
     chunkSizeWarningLimit: 1000,
