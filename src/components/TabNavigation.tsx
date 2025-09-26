@@ -24,7 +24,7 @@ export const TabNavigation = ({ tabs, activeTab, onTabChange }: TabNavigationPro
             className={`relative whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
               activeTab === tab.id
                 ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
+                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-200 dark:hover:text-gray-100'
             }`}
           >
             <span className="flex items-center space-x-2">
@@ -52,7 +52,7 @@ export const TabNavigation = ({ tabs, activeTab, onTabChange }: TabNavigationPro
             className={`flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all ${
               activeTab === tab.id
                 ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
-                : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+                : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
             }`}
           >
             <span className="text-2xl mb-2">{tab.icon}</span>
