@@ -93,6 +93,15 @@ export const ValidatorStats = ({ validatorKey }: ValidatorStatsProps) => {
         )}
       </div>
       
+      <div className="mb-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+        <p className="text-xs text-green-700 dark:text-green-300">
+          <span className="font-medium">💰 Staking Insights:</span> 
+          APR is calculated after commission deduction. Lower commission rates (0-10%) attract more delegators. 
+          Epoch rewards fluctuate based on network activity and your validator's performance.
+          {validatorKey ? ' Data sourced from your validator\'s stake activation and vote account information.' : ' Sample staking data shown - enter your validator key for accurate financial metrics.'}
+        </p>
+      </div>
+      
       {error && (
         <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
           <p className="text-sm text-red-600 dark:text-red-400">⚠️ {error}</p>

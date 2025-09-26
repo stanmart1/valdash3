@@ -76,16 +76,33 @@ export const PerformanceMetrics = ({ validatorKey }: PerformanceMetricsProps) =>
       transition={{ duration: 0.5 }}
       className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
     >
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           📊 Performance Metrics
         </h2>
-        {validatorKey && (
-          <div className="text-xs text-blue-600 dark:text-blue-400 flex items-center space-x-1">
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-            <span>Real-time</span>
-          </div>
-        )}
+        <div className="flex items-center space-x-2">
+          {validatorKey && (
+            <div className="text-xs text-blue-600 dark:text-blue-400 flex items-center space-x-1">
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <span>Real-time</span>
+            </div>
+          )}
+          <button
+            onClick={() => window.location.reload()}
+            className="px-2 py-1 text-xs bg-gray-500 hover:bg-gray-600 text-white rounded transition-colors"
+          >
+            🔄
+          </button>
+        </div>
+      </div>
+      
+      <div className="mb-6 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+        <p className="text-xs text-gray-600 dark:text-gray-400">
+          <span className="font-medium">📊 Performance Guide:</span> 
+          Block Production & Vote Success should be above 95% for optimal performance. 
+          Skip Rate should stay below 5%. Uptime above 99% indicates excellent reliability.
+          {validatorKey ? ' These metrics are calculated from your validator\'s recent epoch credits.' : ' Sample data shown - enter your validator key for real metrics.'}
+        </p>
       </div>
       
       {error && (

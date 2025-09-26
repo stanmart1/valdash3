@@ -105,6 +105,15 @@ export const NetworkHealth = ({ validatorKey }: NetworkHealthProps) => {
           </div>
         )}
       </div>
+      
+      <div className="mb-4 p-3 bg-cyan-50 dark:bg-cyan-900/20 rounded-lg border border-cyan-200 dark:border-cyan-800">
+        <p className="text-xs text-cyan-700 dark:text-cyan-300">
+          <span className="font-medium">🌐 Network Monitoring:</span> 
+          TPS indicates network throughput capacity. Higher validator counts improve decentralization. 
+          Network load affects transaction fees and confirmation times.
+          {validatorKey ? ' Monitor how your validator contributes to overall network health and stability.' : ' Real-time Solana network statistics updated every 30 seconds.'}
+        </p>
+      </div>
 
       {clusterHealth && (
         <div className="space-y-4">

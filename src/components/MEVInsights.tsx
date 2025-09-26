@@ -71,7 +71,7 @@ export const MEVInsights = ({ validatorKey }: MEVInsightsProps) => {
       transition={{ duration: 0.5 }}
       className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
     >
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           🚀 MEV Analytics
         </h2>
@@ -79,6 +79,15 @@ export const MEVInsights = ({ validatorKey }: MEVInsightsProps) => {
           <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
           <span>Jito Integration</span>
         </div>
+      </div>
+      
+      <div className="mb-6 p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-800">
+        <p className="text-xs text-orange-700 dark:text-orange-300">
+          <span className="font-medium">🚀 MEV Explained:</span> 
+          Maximum Extractable Value (MEV) represents additional profits from transaction ordering and bundling. 
+          Higher bundle success rates (&gt;80%) and consistent MEV capture indicate effective participation in the MEV ecosystem.
+          {validatorKey ? ' Your validator\'s MEV performance is shown with Jito block engine data.' : ' Network averages displayed - connect your validator for personalized MEV insights.'}
+        </p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">

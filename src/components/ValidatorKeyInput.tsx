@@ -133,9 +133,25 @@ export const ValidatorKeyInput = ({ onValidatorSet, currentValidator }: Validato
       
       <div className="space-y-4">
         <div className="relative">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Search or Enter Validator Public Key
-          </label>
+          <div className="flex items-center justify-between mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              Search or Enter Validator Public Key
+            </label>
+            <div className="group relative">
+              <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-sm">
+                ℹ️ Help
+              </button>
+              <div className="absolute right-0 top-6 w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20">
+                <h4 className="font-semibold text-sm text-gray-900 dark:text-white mb-2">How to use this dashboard:</h4>
+                <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
+                  <li>• Search by validator name or paste a public key</li>
+                  <li>• Use sample validators to explore features</li>
+                  <li>• View network data without entering a key</li>
+                  <li>• Get real-time updates every 30 seconds</li>
+                </ul>
+              </div>
+            </div>
+          </div>
           <div className="relative">
             <div className="flex space-x-2">
               <div className="flex-1 relative">

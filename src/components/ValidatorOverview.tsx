@@ -59,13 +59,20 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Validator Overview</h2>
-        <button 
-          onClick={refetch}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Refresh
-        </button>
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">🏛️ Validator Overview</h2>
+        <div className="flex items-center space-x-2">
+          <span className="text-xs text-gray-500 dark:text-gray-400">
+            Updated: {new Date().toLocaleTimeString()}
+          </span>
+          <button 
+            onClick={refetch}
+            disabled={isLoading}
+            className="px-3 py-1 text-sm bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 text-white rounded-lg transition-colors flex items-center space-x-1"
+          >
+            <span className={isLoading ? 'animate-spin' : ''}>{isLoading ? '⏳' : '🔄'}</span>
+            <span>Refresh</span>
+          </button>
+        </div>
       </div>
       
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
