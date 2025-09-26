@@ -26,10 +26,18 @@ function App() {
   const [apiConfig, setApiConfig] = useState({
     provider: 'helius' as 'helius' | 'jito' | 'solanafm' | 'shyft',
     apiKey: '',
-    network: 'mainnet' as 'mainnet' | 'devnet' | 'testnet',
+    network: 'devnet' as 'mainnet' | 'devnet' | 'testnet',
   });
 
   useEffect(() => {
+    // Force devnet if mainnet is selected (to avoid 403 errors)
+    const currentNetwork = localStorage.getItem('selectedNetwork');
+    if (currentNetwork === 'mainnet-beta') {
+      localStorage.setItem('selectedNetwork', 'devnet');
+      window.location.reload();
+      return;
+    }
+    
     // Test connection on app load
     const testConnection = async () => {
       try {
@@ -79,7 +87,7 @@ function App() {
             {/* Network selector row */}
             <div>
               <NetworkSelector 
-                currentNetwork={localStorage.getItem('selectedNetwork') as any || 'devnet'}
+                currentNetwork={(localStorage.getItem('selectedNetwork') as any) || 'devnet'}
                 onNetworkChange={(network) => {
                   if (confirm(`Switch to ${network}? This will reload the page.`)) {
                     localStorage.setItem('selectedNetwork', network);

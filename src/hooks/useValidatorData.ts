@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { connection } from '../utils/solanaClient';
-import { EpochInfo, VoteAccountInfo, PublicKey, StakeActivationData } from '@solana/web3.js';
+import { connection, createFallbackConnection } from '../utils/solanaClient';
+import { EpochInfo, VoteAccountInfo, PublicKey, StakeActivationData, Connection } from '@solana/web3.js';
 
 interface ValidatorInfo {
   publicKey: string;
@@ -73,15 +73,20 @@ export const useValidatorData = (validatorKey?: string) => {
   };
 
   const fetchData = async () => {
-    try {
-      setData(prev => ({ ...prev, isLoading: true, error: null }));
-      
-      const [epochInfo, currentSlot, version, voteAccountsInfo] = await Promise.all([
-        connection.getEpochInfo(),
-        connection.getSlot(),
-        connection.getVersion(),
-        connection.getVoteAccounts(),
-      ]);
+    let currentConnection: Connection = connection;
+    let retryCount = 0;
+    const maxRetries = 2;
+    
+    while (retryCount <= maxRetries) {
+      try {
+        setData(prev => ({ ...prev, isLoading: true, error: null }));
+        
+        const [epochInfo, currentSlot, version, voteAccountsInfo] = await Promise.all([
+          currentConnection.getEpochInfo(),
+          currentConnection.getSlot(),
+          currentConnection.getVersion(),
+          currentConnection.getVoteAccounts(),
+        ]);
 
       let validatorInfo: ValidatorInfo | null = null;
       
@@ -101,22 +106,38 @@ export const useValidatorData = (validatorKey?: string) => {
         averageSkipRate: 2.1, // Mock data - would need historical slot data
       };
 
-      setData({
-        epochInfo,
-        currentSlot,
-        version,
-        validatorInfo,
-        networkStats,
-        isLoading: false,
-        error: null,
-      });
-    } catch (error) {
-      console.error('Network data fetch failed:', error);
-      setData(prev => ({
-        ...prev,
-        isLoading: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch network data',
-      }));
+        setData({
+          epochInfo,
+          currentSlot,
+          version,
+          validatorInfo,
+          networkStats,
+          isLoading: false,
+          error: null,
+        });
+        return; // Success, exit retry loop
+      } catch (error) {
+        console.error(`Network data fetch failed (attempt ${retryCount + 1}):`, error);
+        
+        if (retryCount < maxRetries) {
+          retryCount++;
+          if (retryCount === 1) {
+            // Try fallback connection on first retry
+            currentConnection = createFallbackConnection();
+            console.log('Switching to fallback RPC endpoint...');
+          }
+          // Wait before retry
+          await new Promise(resolve => setTimeout(resolve, 1000 * retryCount));
+        } else {
+          // All retries exhausted
+          setData(prev => ({
+            ...prev,
+            isLoading: false,
+            error: error instanceof Error ? error.message : 'Failed to fetch network data',
+          }));
+          return;
+        }
+      }
     }
   };
 

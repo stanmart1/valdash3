@@ -10,15 +10,22 @@ interface WalletContextProviderProps {
 }
 
 export const WalletContextProvider = ({ children }: WalletContextProviderProps) => {
-  const selectedNetwork = (typeof window !== 'undefined' ? localStorage.getItem('selectedNetwork') : null) || import.meta.env.VITE_SOLANA_NETWORK || 'devnet';
+  // Force devnet to avoid 403 errors on mainnet
+  let selectedNetwork = (typeof window !== 'undefined' ? localStorage.getItem('selectedNetwork') : null) || import.meta.env.VITE_SOLANA_NETWORK || 'devnet';
+  if (selectedNetwork === 'mainnet-beta') {
+    selectedNetwork = 'devnet';
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedNetwork', 'devnet');
+    }
+  }
   const getRpcUrl = (network: string) => {
     switch (network) {
       case 'mainnet-beta':
-        return 'https://mainnet.helius-rpc.com/?api-key=demo';
+        return 'https://api.mainnet-beta.solana.com';
       case 'testnet':
-        return 'https://testnet.helius-rpc.com/?api-key=demo';
+        return 'https://api.testnet.solana.com';
       default:
-        return 'https://devnet.helius-rpc.com/?api-key=demo';
+        return 'https://api.devnet.solana.com';
     }
   };
   const endpoint = import.meta.env.VITE_SOLANA_RPC_URL || getRpcUrl(selectedNetwork);

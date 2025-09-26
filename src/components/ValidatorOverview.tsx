@@ -47,13 +47,23 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
         <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Validator Overview</h2>
-        <div className="text-red-500">Error: {error}</div>
-        <button 
-          onClick={refetch}
-          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Retry
-        </button>
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+          <div className="flex items-center space-x-2 mb-2">
+            <span className="text-red-500">⚠️</span>
+            <span className="font-semibold text-red-700 dark:text-red-400">Connection Error</span>
+          </div>
+          <p className="text-sm text-red-600 dark:text-red-400 mb-3">
+            {error.includes('403') ? 'RPC endpoint access denied. Using fallback connection.' : error}
+          </p>
+          <button 
+            onClick={refetch}
+            disabled={isLoading}
+            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 text-white rounded-lg transition-colors flex items-center space-x-2"
+          >
+            <span className={isLoading ? 'animate-spin' : ''}>{isLoading ? '⏳' : '🔄'}</span>
+            <span>Retry Connection</span>
+          </button>
+        </div>
       </div>
     );
   }

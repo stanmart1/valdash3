@@ -1,5 +1,5 @@
 import { Connection, PublicKey } from '@solana/web3.js';
-import { connection } from '../utils/solanaClient';
+import { connection, createFallbackConnection } from '../utils/solanaClient';
 
 export interface ValidatorPerformance {
   blockProductionRate: number;
@@ -29,9 +29,20 @@ export interface RewardsInfo {
 
 export class ValidatorService {
   private connection: Connection;
+  private fallbackConnection: Connection;
 
   constructor() {
     this.connection = connection;
+    this.fallbackConnection = createFallbackConnection();
+  }
+
+  private async executeWithFallback<T>(operation: (conn: Connection) => Promise<T>): Promise<T> {
+    try {
+      return await operation(this.connection);
+    } catch (error) {
+      console.warn('Primary RPC failed, trying fallback:', error);
+      return await operation(this.fallbackConnection);
+    }
   }
 
   async validatePublicKey(keyString: string): Promise<boolean> {
@@ -46,7 +57,7 @@ export class ValidatorService {
   async getValidatorExists(validatorKey: string): Promise<boolean> {
     try {
       new PublicKey(validatorKey);
-      const voteAccounts = await this.connection.getVoteAccounts();
+      const voteAccounts = await this.executeWithFallback(conn => conn.getVoteAccounts());
       
       return voteAccounts.current.some(account => 
         account.nodePubkey === validatorKey || account.votePubkey === validatorKey
@@ -78,8 +89,8 @@ export class ValidatorService {
       }
 
       // Get real performance data from Solana RPC
-      const epochInfo = await this.connection.getEpochInfo();
-      const blockProduction = await this.connection.getBlockProduction();
+      const epochInfo = await this.executeWithFallback(conn => conn.getEpochInfo());
+      const blockProduction = await this.executeWithFallback(conn => conn.getBlockProduction());
       
       const validatorStats = blockProduction.value.byIdentity[validatorKey];
       const blockProductionRate = validatorStats ? 
@@ -106,8 +117,8 @@ export class ValidatorService {
     try {
       const pubkey = new PublicKey(validatorKey);
       const [voteAccounts, stakeActivation] = await Promise.all([
-        this.connection.getVoteAccounts(),
-        this.connection.getStakeActivation(pubkey).catch(() => null),
+        this.executeWithFallback(conn => conn.getVoteAccounts()),
+        this.executeWithFallback(conn => conn.getStakeActivation(pubkey)).catch(() => null),
       ]);
 
       const validator = voteAccounts.current.find(account => 

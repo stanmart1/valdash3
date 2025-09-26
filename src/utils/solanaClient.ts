@@ -1,16 +1,40 @@
 import { Connection } from "@solana/web3.js";
 
 const selectedNetwork = (typeof window !== 'undefined' ? localStorage.getItem('selectedNetwork') : null) || import.meta.env.VITE_SOLANA_NETWORK || 'devnet';
-const getRpcUrl = (network: string) => {
+
+const getRpcEndpoints = (network: string) => {
   switch (network) {
     case 'mainnet-beta':
-      return 'https://mainnet.helius-rpc.com/?api-key=demo';
+      return [
+        'https://rpc.ankr.com/solana',
+        'https://solana-api.projectserum.com'
+      ];
     case 'testnet':
-      return 'https://testnet.helius-rpc.com/?api-key=demo';
+      return [
+        'https://api.testnet.solana.com'
+      ];
     default:
-      return 'https://devnet.helius-rpc.com/?api-key=demo';
+      return [
+        'https://api.devnet.solana.com'
+      ];
   }
 };
-const rpcUrl = import.meta.env.VITE_SOLANA_RPC_URL || getRpcUrl(selectedNetwork);
 
-export const connection = new Connection(rpcUrl, "confirmed");
+const createConnection = () => {
+  const customRpcUrl = import.meta.env.VITE_SOLANA_RPC_URL;
+  if (customRpcUrl) {
+    return new Connection(customRpcUrl, "confirmed");
+  }
+  
+  const endpoints = getRpcEndpoints(selectedNetwork);
+  return new Connection(endpoints[0], "confirmed");
+};
+
+export const connection = createConnection();
+
+// Fallback connection helper
+export const createFallbackConnection = (network: string = selectedNetwork) => {
+  const endpoints = getRpcEndpoints(network);
+  // Use second endpoint as fallback
+  return new Connection(endpoints[1] || endpoints[0], "confirmed");
+};
