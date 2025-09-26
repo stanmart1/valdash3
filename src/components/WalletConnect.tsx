@@ -29,7 +29,13 @@ export const WalletConnect = () => {
       
       {/* Wallet Button */}
       <div className="flex-1">
-        <WalletMultiButton className="!bg-purple-500 hover:!bg-purple-600 !rounded-lg !transition-colors !text-sm !px-3 !py-2 !w-full !justify-center !flex !items-center !space-x-1" />
+        {!connected ? (
+          <button className="bg-purple-500 hover:bg-purple-600 rounded-lg transition-colors text-sm px-3 py-2 w-full justify-center flex items-center space-x-1 text-white font-medium">
+            Select Wallet
+          </button>
+        ) : (
+          <WalletMultiButton className="!bg-purple-500 hover:!bg-purple-600 !rounded-lg !transition-colors !text-sm !px-3 !py-2 !w-full !justify-center !flex !items-center !space-x-1" />
+        )}
       </div>
     </div>
   );

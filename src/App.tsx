@@ -118,7 +118,7 @@ function App() {
                 className="px-3 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg transition-all duration-200 flex items-center space-x-2 shadow-lg text-sm font-medium"
               >
                 <span>🔑</span>
-                <span className="hidden sm:inline">APIs</span>
+                <span className="hidden sm:inline">Premium API</span>
               </button>
             </div>
           </div>
