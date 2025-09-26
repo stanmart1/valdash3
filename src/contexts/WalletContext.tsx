@@ -10,18 +10,11 @@ interface WalletContextProviderProps {
 }
 
 export const WalletContextProvider = ({ children }: WalletContextProviderProps) => {
-  // Force devnet to avoid 403 errors on mainnet
-  let selectedNetwork = (typeof window !== 'undefined' ? localStorage.getItem('selectedNetwork') : null) || import.meta.env.VITE_SOLANA_NETWORK || 'devnet';
-  if (selectedNetwork === 'mainnet-beta') {
-    selectedNetwork = 'devnet';
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('selectedNetwork', 'devnet');
-    }
-  }
+  const selectedNetwork = (typeof window !== 'undefined' ? localStorage.getItem('selectedNetwork') : null) || import.meta.env.VITE_SOLANA_NETWORK || 'devnet';
   const getRpcUrl = (network: string) => {
     switch (network) {
       case 'mainnet-beta':
-        return 'https://api.mainnet-beta.solana.com';
+        return 'https://solana-mainnet.g.alchemy.com/v2/demo';
       case 'testnet':
         return 'https://api.testnet.solana.com';
       default:

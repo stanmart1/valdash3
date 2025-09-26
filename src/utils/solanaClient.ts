@@ -6,8 +6,8 @@ const getRpcEndpoints = (network: string) => {
   switch (network) {
     case 'mainnet-beta':
       return [
-        'https://rpc.ankr.com/solana',
-        'https://solana-api.projectserum.com'
+        'https://solana-mainnet.g.alchemy.com/v2/demo',
+        'https://rpc.ankr.com/solana'
       ];
     case 'testnet':
       return [
