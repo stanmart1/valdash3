@@ -1,88 +1,73 @@
-# 🛠️ Solana Validator Dashboard
+# Validator Dashboard
 
-A full-stack Web3 application for monitoring Solana validator performance with real-time alerts and analytics.
+A comprehensive Solana validator monitoring dashboard with real-time metrics and MEV insights.
 
 ## Features
 
-- **Real-time Validator Stats**: Uptime, stake amount, commission, rewards
-- **Performance Alerts**: Configurable thresholds with instant notifications
-- **Rewards Analytics**: Historical APR and rewards visualization
-- **Wallet Integration**: Connect with Phantom and other Solana wallets
-- **Responsive Design**: Works on desktop and mobile devices
+- **Real-time Validator Monitoring**: Live epoch progress, slot tracking, and network status
+- **Performance Metrics**: Block production rates, vote success, uptime tracking
+- **Staking Analytics**: Stake amounts, commission rates, rewards, and APR calculations
+- **MEV Insights**: Bundle success rates, MEV capture, and additional APR from MEV
+- **Searcher Activity**: Arbitrage opportunities, liquidation events, and backrun profits
+- **Network Health**: Cluster status, node count, and TPS monitoring
+- **Dark/Light Mode**: Toggle between themes for better user experience
 
 ## Tech Stack
 
-- **Frontend**: React + TypeScript + Vite
-- **Backend**: Rust + Tokio
-- **Blockchain**: Solana + Anchor Framework
+- **Frontend**: React 18 + TypeScript + Vite
+- **Styling**: Tailwind CSS
+- **Blockchain**: Solana Web3.js
+- **Animations**: Framer Motion
 - **Charts**: Recharts
-- **Deployment**: Docker + Coolify
 
-## Quick Start
+## Getting Started
 
-### Prerequisites
-- Node.js 18+
-- Rust 1.70+
-- Solana CLI
-- Anchor CLI
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-### Installation
+2. **Start development server**:
+   ```bash
+   npm run dev
+   ```
 
-1. **Clone and setup**:
-```bash
-git clone <repo-url>
-cd valdash
-npm install
+3. **Build for production**:
+   ```bash
+   npm run build
+   ```
+
+## Project Structure
+
 ```
-
-2. **Configure environment**:
-```bash
-cp .env.example .env
-# Edit .env with your validator public key and RPC URL
-```
-
-3. **Build Solana program**:
-```bash
-anchor build
-anchor deploy
-```
-
-4. **Start development servers**:
-```bash
-npm run dev
-```
-
-### Production Deployment
-
-1. **Using Docker Compose**:
-```bash
-docker-compose up -d
-```
-
-2. **Using Coolify**:
-```bash
-npm run deploy
+src/
+├── components/          # React components
+│   ├── ValidatorOverview.tsx
+│   ├── PerformanceMetrics.tsx
+│   ├── ValidatorStats.tsx
+│   ├── MEVInsights.tsx
+│   ├── SearcherActivity.tsx
+│   └── NetworkStatus.tsx
+├── hooks/              # Custom React hooks
+│   ├── useValidatorData.ts
+│   └── useMEVData.ts
+├── utils/              # Utility functions
+│   ├── solanaClient.ts
+│   └── jitoClient.ts
+└── App.tsx             # Main application component
 ```
 
 ## Configuration
 
-### Environment Variables
+The application connects to Solana devnet by default. To change networks, modify `src/utils/solanaClient.ts`:
 
-- `SOLANA_RPC_URL`: Solana RPC endpoint
-- `VALIDATOR_PUBKEY`: Your validator's public key
-- `ALERT_THRESHOLD`: Uptime threshold for alerts (default: 95%)
+```typescript
+export const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
+```
 
-### Validator Setup
+## MEV Integration
 
-1. Enter your validator's public key in the dashboard
-2. Configure alert thresholds
-3. Monitor real-time performance metrics
-
-## API Endpoints
-
-- `GET /api/validator/:pubkey/stats` - Get validator statistics
-- `POST /api/alerts/threshold` - Update alert threshold
-- `GET /api/rewards/history` - Get rewards history
+The dashboard includes MEV analytics through simulated Jito integration. In production, replace the mock data in `src/utils/jitoClient.ts` with actual Jito API calls.
 
 ## Contributing
 
@@ -93,4 +78,4 @@ npm run deploy
 
 ## License
 
-MIT License - see LICENSE file for details
+MIT License - see LICENSE file for details.
