@@ -97,7 +97,7 @@ export const PerformanceMetrics = ({ validatorKey }: PerformanceMetricsProps) =>
       </div>
       
       <div className="mb-6 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-        <p className="text-xs text-gray-600 dark:text-gray-400">
+        <p className="text-xs text-yellow-600 dark:text-yellow-400">
           <span className="font-medium">📊 Performance Guide:</span> 
           Block Production & Vote Success should be above 95% for optimal performance. 
           Skip Rate should stay below 5%. Uptime above 99% indicates excellent reliability.

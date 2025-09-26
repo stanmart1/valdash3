@@ -6,14 +6,18 @@ export default defineConfig({
   plugins: [react()],
   define: {
     global: 'globalThis',
+    'process.env': {},
   },
   resolve: {
     alias: {
       buffer: 'buffer',
+      process: 'process/browser',
+      stream: 'stream-browserify',
+      util: 'util',
     },
   },
   optimizeDeps: {
-    include: ['buffer'],
+    include: ['buffer', 'process'],
   },
   build: {
     chunkSizeWarningLimit: 1000,
