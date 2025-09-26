@@ -46,11 +46,8 @@ export const TabContent = ({ activeTab, validatorKey }: TabContentProps) => {
         <div className="lg:col-span-2">
           <ValidatorOverview validatorKey={validatorKey} />
         </div>
-        <div>
+        <div className="lg:col-span-2">
           <EpochProgress validatorKey={validatorKey} />
-        </div>
-        <div>
-          <PerformanceMetrics validatorKey={validatorKey} />
         </div>
       </div>
     </div>

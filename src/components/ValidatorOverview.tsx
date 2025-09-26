@@ -58,15 +58,15 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center space-x-2">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">🏛️ Validator Overview</h2>
-          <div className="px-2 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs rounded-full">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
+        <div className="flex items-center space-x-2 min-w-0">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white truncate">🏛️ Validator Overview</h2>
+          <div className="px-2 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs rounded-full whitespace-nowrap">
             ✨ Premium
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <span className="text-xs text-gray-500 dark:text-gray-400">
+        <div className="flex items-center space-x-2 flex-shrink-0">
+          <span className="text-xs text-gray-500 dark:text-gray-400 hidden sm:inline">
             Updated: {new Date().toLocaleTimeString()}
           </span>
           <button 
@@ -75,7 +75,7 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
             className="px-3 py-1 text-sm bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 text-white rounded-lg transition-colors flex items-center space-x-1"
           >
             <span className={isLoading ? 'animate-spin' : ''}>{isLoading ? '⏳' : '🔄'}</span>
-            <span>Refresh</span>
+            <span className="hidden sm:inline">Refresh</span>
           </button>
         </div>
       </div>
@@ -92,10 +92,10 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
         </div>
         
         <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{currentSlot?.toLocaleString()}</div>
+          <div className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white break-all">{currentSlot?.toLocaleString()}</div>
           <div className="text-sm text-gray-600 dark:text-gray-400">Current Slot</div>
           {validatorInfo?.lastVote && (
-            <div className="text-xs text-blue-600 dark:text-blue-400">
+            <div className="text-xs text-blue-600 dark:text-blue-400 break-all">
               Last Vote: {validatorInfo.lastVote.toLocaleString()}
             </div>
           )}
@@ -112,10 +112,10 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
         </div>
         
         <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 rounded-lg">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{version?.['solana-core']}</div>
+          <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white truncate">{version?.['solana-core']}</div>
           <div className="text-sm text-gray-600 dark:text-gray-400">Version</div>
           {validatorInfo?.credits && (
-            <div className="text-xs text-orange-600 dark:text-orange-400">
+            <div className="text-xs text-orange-600 dark:text-orange-400 truncate">
               {validatorInfo.credits.toLocaleString()} Credits
             </div>
           )}
@@ -169,7 +169,7 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
           {networkStats?.totalValidators || 0} validators, {((networkStats?.totalStake || 0) / 1e9).toFixed(0)}M SOL staked
         </div>
         {validatorKey && (
-          <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+          <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded break-all">
             {validatorKey}
           </div>
         )}

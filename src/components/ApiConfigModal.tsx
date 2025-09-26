@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface ApiConfig {
@@ -16,6 +16,21 @@ interface ApiConfigModalProps {
 
 export const ApiConfigModal = ({ isOpen, onClose, onSave, currentConfig }: ApiConfigModalProps) => {
   const [config, setConfig] = useState<ApiConfig>(currentConfig);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const firstInputRef = useRef<HTMLSelectElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      firstInputRef.current?.focus();
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const handleSave = () => {
     onSave(config);
@@ -61,13 +76,17 @@ export const ApiConfigModal = ({ isOpen, onClose, onSave, currentConfig }: ApiCo
             onClick={onClose}
           />
           <motion.div
+            ref={modalRef}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md mx-4"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
           >
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+              <h2 id="modal-title" className="text-xl font-semibold text-gray-900 dark:text-white">
                 🔑 API Configuration
               </h2>
               <button
@@ -99,6 +118,7 @@ export const ApiConfigModal = ({ isOpen, onClose, onSave, currentConfig }: ApiCo
                   Data Provider
                 </label>
                 <select
+                  ref={firstInputRef}
                   value={config.provider}
                   onChange={(e) => setConfig({ ...config, provider: e.target.value as any })}
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white mb-3"
