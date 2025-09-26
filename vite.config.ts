@@ -7,11 +7,12 @@ export default defineConfig({
   define: {
     global: 'globalThis',
     'process.env': {},
+    'process.browser': true,
   },
   resolve: {
     alias: {
       buffer: 'buffer',
-      process: 'process/browser',
+      process: 'process',
       stream: 'stream-browserify',
       util: 'util',
     },
