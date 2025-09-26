@@ -154,6 +154,19 @@ export const ValidatorStats = ({ validatorKey }: ValidatorStatsProps) => {
         </div>
       </div>
       
+      {rewardsInfo && rewardsInfo.rewardsHistory.length > 0 && (
+        <div className="mt-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+            📈 Rewards History
+          </h3>
+          <div className="h-48 bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+            <div className="text-sm text-gray-600 dark:text-gray-400 text-center pt-16">
+              Chart showing last {rewardsInfo.rewardsHistory.length} epochs
+            </div>
+          </div>
+        </div>
+      )}
+      
       {!validatorKey && (
         <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
           <p className="text-sm text-yellow-700 dark:text-yellow-300">

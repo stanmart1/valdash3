@@ -23,23 +23,27 @@ export const MEVInsights = ({ validatorKey }: MEVInsightsProps) => {
     const fetchMEVData = async () => {
       setLoading(true);
       
-      // Simulate Jito API call with realistic data
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const mockData: MEVData = {
-        mevCaptured: validatorKey ? 45.7 + Math.random() * 20 : 32.1,
-        bundleSuccessRate: validatorKey ? 87.3 + Math.random() * 10 : 78.5,
-        additionalAPR: validatorKey ? 1.8 + Math.random() * 0.5 : 1.2,
-        totalBundles: validatorKey ? 1247 + Math.floor(Math.random() * 500) : 892,
-        successfulBundles: 0,
-        averageMEVPerBundle: validatorKey ? 0.037 + Math.random() * 0.02 : 0.036,
-        lastUpdated: new Date(),
-      };
-      
-      mockData.successfulBundles = Math.floor(mockData.totalBundles * (mockData.bundleSuccessRate / 100));
-      
-      setMevData(mockData);
-      setLoading(false);
+      try {
+        const { jitoClient } = await import('../utils/jitoClient');
+        const jitoData = await jitoClient.getMEVData(validatorKey);
+        
+        const mevData: MEVData = {
+          mevCaptured: jitoData.mevCaptured,
+          bundleSuccessRate: jitoData.bundleSuccessRate,
+          additionalAPR: jitoData.additionalAPR,
+          totalBundles: jitoData.totalBundles,
+          successfulBundles: jitoData.successfulBundles,
+          averageMEVPerBundle: jitoData.mevCaptured / jitoData.successfulBundles,
+          lastUpdated: new Date(),
+        };
+        
+        setMevData(mevData);
+      } catch (error) {
+        console.error('Failed to fetch MEV data:', error);
+        setMevData(null);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchMEVData();
@@ -62,7 +66,18 @@ export const MEVInsights = ({ validatorKey }: MEVInsightsProps) => {
     );
   }
 
-  if (!mevData) return null;
+  if (!mevData) {
+    return (
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">🚀 MEV Analytics</h2>
+        <div className="text-center py-8">
+          <div className="text-4xl mb-4">🔑</div>
+          <p className="text-gray-600 dark:text-gray-400 mb-2">MEV data requires API configuration</p>
+          <p className="text-sm text-gray-500 dark:text-gray-500">Configure Jito Labs API key to view MEV metrics</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <motion.div

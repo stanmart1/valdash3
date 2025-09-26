@@ -59,7 +59,12 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">🏛️ Validator Overview</h2>
+        <div className="flex items-center space-x-2">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">🏛️ Validator Overview</h2>
+          <div className="px-2 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs rounded-full">
+            ✨ Premium
+          </div>
+        </div>
         <div className="flex items-center space-x-2">
           <span className="text-xs text-gray-500 dark:text-gray-400">
             Updated: {new Date().toLocaleTimeString()}

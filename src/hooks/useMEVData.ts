@@ -1,5 +1,18 @@
 import { useState, useEffect } from 'react';
-import { fetchMEVData, fetchSearcherActivity, MEVData, SearcherActivity } from '../utils/jitoClient';
+import { jitoClient } from '../utils/jitoClient';
+
+interface MEVData {
+  mevCaptured: number;
+  bundleSuccessRate: number;
+  additionalAPR: number;
+}
+
+interface SearcherActivity {
+  opportunitiesDetected: number;
+  arbitrageBots: number;
+  liquidationEvents: number;
+  backrunProfits: number;
+}
 
 interface MEVHookData {
   mevData: MEVData | null;
@@ -20,10 +33,23 @@ export const useMEVData = () => {
     try {
       setData(prev => ({ ...prev, isLoading: true, error: null }));
       
-      const [mevData, searcherActivity] = await Promise.all([
-        fetchMEVData(),
-        fetchSearcherActivity(),
+      const [jitoMEVData, jitoSearcherData] = await Promise.all([
+        jitoClient.getMEVData(),
+        jitoClient.getSearcherActivity(),
       ]);
+      
+      const mevData: MEVData = {
+        mevCaptured: jitoMEVData.mevCaptured,
+        bundleSuccessRate: jitoMEVData.bundleSuccessRate,
+        additionalAPR: jitoMEVData.additionalAPR,
+      };
+      
+      const searcherActivity: SearcherActivity = {
+        opportunitiesDetected: jitoSearcherData.opportunitiesDetected,
+        arbitrageBots: jitoSearcherData.arbitrageBots,
+        liquidationEvents: jitoSearcherData.liquidationEvents,
+        backrunProfits: jitoSearcherData.backrunProfits,
+      };
 
       setData({
         mevData,

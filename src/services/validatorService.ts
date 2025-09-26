@@ -77,14 +77,24 @@ export class ValidatorService {
         };
       }
 
-      const recentCredits = validator.epochCredits.slice(-5);
-      const avgCredits = recentCredits.reduce((sum, [, credits]) => sum + credits, 0) / recentCredits.length;
+      // Get real performance data from Solana RPC
+      const epochInfo = await this.connection.getEpochInfo();
+      const blockProduction = await this.connection.getBlockProduction();
+      
+      const validatorStats = blockProduction.value.byIdentity[validatorKey];
+      const blockProductionRate = validatorStats ? 
+        (validatorStats[1] / (validatorStats[0] + validatorStats[1])) * 100 : 0;
+      
+      const recentCredits = validator.epochCredits.slice(-3);
+      const totalCredits = recentCredits.reduce((sum, [, credits]) => sum + credits, 0);
+      const expectedCredits = recentCredits.length * epochInfo.slotsInEpoch;
+      const voteSuccessRate = expectedCredits > 0 ? (totalCredits / expectedCredits) * 100 : 0;
       
       return {
-        blockProductionRate: Math.min(98.5, Math.max(85, avgCredits / 1000 * 100)),
-        voteSuccessRate: Math.min(99.8, Math.max(90, avgCredits / 950 * 100)),
-        skipRate: Math.max(0.5, Math.min(15, (1000 - avgCredits) / 100)),
-        uptime: Math.min(99.9, Math.max(95, avgCredits / 980 * 100)),
+        blockProductionRate: Math.min(100, Math.max(0, blockProductionRate)),
+        voteSuccessRate: Math.min(100, Math.max(0, voteSuccessRate)),
+        skipRate: Math.max(0, 100 - blockProductionRate),
+        uptime: Math.min(100, Math.max(0, voteSuccessRate)),
         averageSlotTime: 400,
       };
     } catch (error) {
@@ -128,16 +138,11 @@ export class ValidatorService {
   async getRewardsInfo(validatorKey: string): Promise<RewardsInfo> {
     try {
       const stakeInfo = await this.getStakeInfo(validatorKey);
-      const epochInfo = await this.connection.getEpochInfo();
-      
       const epochRewards = (stakeInfo.totalStake * stakeInfo.apr / 100) / 365 * 2.5;
       const totalRewards = epochRewards * 50;
 
-      const rewardsHistory = Array.from({ length: 10 }, (_, i) => ({
-        epoch: epochInfo.epoch - (9 - i),
-        rewards: epochRewards * (0.8 + Math.random() * 0.4),
-        commission: stakeInfo.commission,
-      }));
+      // Real rewards history would require historical RPC calls or external API
+      const rewardsHistory: Array<{epoch: number, rewards: number, commission: number}> = [];
 
       return {
         epochRewards,

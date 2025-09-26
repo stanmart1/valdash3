@@ -9,6 +9,7 @@ import { SearcherActivity } from './SearcherActivity';
 import { NetworkStatus } from './NetworkStatus';
 import { NetworkHealth } from './NetworkHealth';
 import { EpochProgress } from './EpochProgress';
+import { NetworkConsensus } from './NetworkConsensus';
 
 interface TabContentProps {
   activeTab: string;
@@ -135,9 +136,12 @@ export const TabContent = ({ activeTab, validatorKey }: TabContentProps) => {
       <NetworkHealth validatorKey={validatorKey} />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
-          <NetworkStatus />
+          <NetworkConsensus validatorKey={validatorKey} />
         </div>
         <div>
+          <NetworkStatus />
+        </div>
+        <div className="lg:col-span-2">
           <EpochProgress validatorKey={validatorKey} />
         </div>
       </div>

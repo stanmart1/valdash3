@@ -1,42 +1,71 @@
-// Mock Jito client for MEV data
-// In production, this would connect to Jito's block engine API
-
-export interface MEVData {
+interface JitoMEVData {
   mevCaptured: number;
   bundleSuccessRate: number;
-  additionalAPR: number;
-  bundlesAccepted: number;
   totalBundles: number;
+  successfulBundles: number;
+  additionalAPR: number;
 }
 
-export interface SearcherActivity {
+interface JitoSearcherData {
   opportunitiesDetected: number;
   arbitrageBots: number;
   liquidationEvents: number;
   backrunProfits: number;
 }
 
-export const fetchMEVData = async (): Promise<MEVData> => {
-  // Simulate API call delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  
-  // Mock data - in production, this would be real Jito API calls
-  return {
-    mevCaptured: 45.7,
-    bundleSuccessRate: 87.3,
-    additionalAPR: 1.8,
-    bundlesAccepted: 1247,
-    totalBundles: 1429,
-  };
-};
+class JitoClient {
 
-export const fetchSearcherActivity = async (): Promise<SearcherActivity> => {
-  await new Promise(resolve => setTimeout(resolve, 800));
-  
-  return {
-    opportunitiesDetected: 342,
-    arbitrageBots: 28,
-    liquidationEvents: 15,
-    backrunProfits: 12.3,
-  };
-};
+  async getMEVData(validatorKey?: string): Promise<JitoMEVData> {
+    if (!validatorKey) {
+      throw new Error('Validator key required for MEV data');
+    }
+    
+    try {
+      // Real Jito API call would go here
+      const response = await fetch(`https://mainnet.block-engine.jito.wtf/api/v1/validators/${validatorKey}/mev`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch MEV data');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Jito API error:', error);
+      throw new Error('MEV data unavailable - configure Jito Labs API key');
+    }
+  }
+
+  async getSearcherActivity(validatorKey?: string): Promise<JitoSearcherData> {
+    if (!validatorKey) {
+      throw new Error('Validator key required for searcher data');
+    }
+    
+    try {
+      const response = await fetch(`https://mainnet.block-engine.jito.wtf/api/v1/validators/${validatorKey}/searchers`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch searcher data');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Jito searcher API error:', error);
+      throw new Error('Searcher data unavailable - configure Jito Labs API key');
+    }
+  }
+
+  async getBundleStats(validatorKey?: string) {
+    if (!validatorKey) {
+      throw new Error('Validator key required for bundle stats');
+    }
+    
+    try {
+      const response = await fetch(`https://mainnet.block-engine.jito.wtf/api/v1/validators/${validatorKey}/bundles`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch bundle statistics');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Jito bundle stats error:', error);
+      throw new Error('Bundle stats unavailable - configure Jito Labs API key');
+    }
+  }
+}
+
+export const jitoClient = new JitoClient();
