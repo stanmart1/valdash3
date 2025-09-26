@@ -76,7 +76,7 @@ function App() {
       }`}>
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-6 lg:mb-8 gap-6">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-6 lg:mb-8 gap-4">
           <div className="min-w-0">
             <h1 className="text-2xl lg:text-3xl font-bold truncate">Validator Dashboard</h1>
             <p className="text-gray-600 dark:text-gray-400 mt-1 text-sm lg:text-base">
@@ -84,10 +84,10 @@ function App() {
             </p>
           </div>
           
-          {/* Desktop/Tablet Layout */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            {/* Top row: Network + Wallet */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          {/* Controls */}
+          <div className="flex flex-col gap-3 lg:items-end">
+            {/* Primary row: Network + Wallet */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
               <NetworkSelector 
                 currentNetwork={(localStorage.getItem('selectedNetwork') as any) || 'devnet'}
                 onNetworkChange={(network) => {
@@ -100,25 +100,25 @@ function App() {
               <WalletConnect />
             </div>
             
-            {/* Action buttons */}
-            <div className="flex gap-2">
-              <button
-                onClick={() => setShowApiModal(true)}
-                className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg transition-all duration-200 flex items-center space-x-2 shadow-lg text-sm font-medium"
-              >
-                <span>🔑</span>
-                <span>APIs</span>
-              </button>
+            {/* Secondary row: Settings */}
+            <div className="flex gap-2 justify-start sm:justify-end">
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className={`px-4 py-2 rounded-lg transition-colors text-sm font-medium flex items-center space-x-2 ${
+                className={`px-3 py-2 rounded-lg transition-colors text-sm font-medium flex items-center space-x-2 ${
                   darkMode 
                     ? 'bg-gray-700 hover:bg-gray-600 text-white border border-gray-600' 
                     : 'bg-white hover:bg-gray-50 text-gray-900 shadow border border-gray-200'
                 }`}
               >
                 <span>{darkMode ? '☀️' : '🌙'}</span>
-                <span>{darkMode ? 'Light' : 'Dark'}</span>
+                <span className="hidden sm:inline">{darkMode ? 'Light' : 'Dark'}</span>
+              </button>
+              <button
+                onClick={() => setShowApiModal(true)}
+                className="px-3 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg transition-all duration-200 flex items-center space-x-2 shadow-lg text-sm font-medium"
+              >
+                <span>🔑</span>
+                <span className="hidden sm:inline">APIs</span>
               </button>
             </div>
           </div>
