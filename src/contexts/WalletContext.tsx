@@ -10,7 +10,8 @@ interface WalletContextProviderProps {
 }
 
 export const WalletContextProvider = ({ children }: WalletContextProviderProps) => {
-  const endpoint = clusterApiUrl('devnet');
+  const network = (import.meta.env.VITE_SOLANA_NETWORK || 'devnet') as 'devnet' | 'testnet' | 'mainnet-beta';
+  const endpoint = import.meta.env.VITE_SOLANA_RPC_URL || clusterApiUrl(network);
   const wallets = [
     new PhantomWalletAdapter(),
     new SolflareWalletAdapter(),

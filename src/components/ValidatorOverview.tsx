@@ -11,16 +11,20 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
   const { epochInfo, currentSlot, version, validatorInfo, networkStats, isLoading, error, refetch } = useValidatorData(validatorKey);
   const [performance, setPerformance] = useState<ValidatorPerformance | null>(null);
   const [performanceLoading, setPerformanceLoading] = useState(false);
+  const [performanceError, setPerformanceError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPerformance = async () => {
       if (!validatorKey) return;
       
       setPerformanceLoading(true);
+      setPerformanceError(null);
       try {
         const perf = await validatorService.getValidatorPerformance(validatorKey);
         setPerformance(perf);
       } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Failed to fetch performance data';
+        setPerformanceError(errorMessage);
         console.error('Failed to fetch performance:', error);
       } finally {
         setPerformanceLoading(false);
@@ -140,7 +144,13 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
         )}
       </div>
 
-      {performance && !performanceLoading && (
+      {performanceError && (
+        <div className="mt-6 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+          <p className="text-sm text-red-600 dark:text-red-400">⚠️ Performance data unavailable: {performanceError}</p>
+        </div>
+      )}
+
+      {performance && !performanceLoading && !performanceError && (
         <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
             <div className="text-lg font-bold text-green-700 dark:text-green-400">{performance.blockProductionRate.toFixed(1)}%</div>

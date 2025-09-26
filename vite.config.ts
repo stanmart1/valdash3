@@ -15,4 +15,21 @@ export default defineConfig({
   optimizeDeps: {
     include: ['buffer'],
   },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'wallet-adapters': [
+            '@solana/wallet-adapter-react',
+            '@solana/wallet-adapter-react-ui',
+            '@solana/wallet-adapter-wallets',
+            '@solana/wallet-adapter-base'
+          ],
+          'solana-web3': ['@solana/web3.js'],
+          'ui-components': ['framer-motion', 'recharts']
+        }
+      }
+    }
+  }
 })
