@@ -10,6 +10,8 @@ import { NetworkStatus } from './NetworkStatus';
 import { NetworkHealth } from './NetworkHealth';
 import { EpochProgress } from './EpochProgress';
 import { NetworkConsensus } from './NetworkConsensus';
+import { StakeOperations } from './StakeOperations';
+import { TransactionHistory } from './TransactionHistory';
 
 interface TabContentProps {
   activeTab: string;
@@ -145,6 +147,34 @@ export const TabContent = ({ activeTab, validatorKey }: TabContentProps) => {
     </div>
   );
 
+  const renderWalletTab = () => (
+    <div className="space-y-6">
+      <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
+        <div className="flex items-start space-x-3">
+          <div className="text-purple-500 text-xl mt-0.5">👛</div>
+          <div>
+            <h3 className="text-sm font-semibold text-purple-900 dark:text-purple-100 mb-1">
+              Wallet Operations
+            </h3>
+            <p className="text-sm text-purple-700 dark:text-purple-300">
+              Connect your Solana wallet to stake SOL, view transaction history, and manage your validator operations. 
+              {validatorKey ? 'Stake directly to your selected validator and track your staking rewards.' : 'Select a validator above to enable direct staking operations.'}
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div>
+          <StakeOperations validatorKey={validatorKey} />
+        </div>
+        <div>
+          <TransactionHistory />
+        </div>
+      </div>
+    </div>
+  );
+
   const getTabContent = () => {
     switch (activeTab) {
       case 'overview':
@@ -155,6 +185,8 @@ export const TabContent = ({ activeTab, validatorKey }: TabContentProps) => {
         return renderMEVTab();
       case 'network':
         return renderNetworkTab();
+      case 'wallet':
+        return renderWalletTab();
       default:
         return renderOverviewTab();
     }
