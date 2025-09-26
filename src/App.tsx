@@ -5,6 +5,7 @@ import { ValidatorKeyInput } from './components/ValidatorKeyInput';
 import { LastUpdated } from './components/LastUpdated';
 import { ApiConfigModal } from './components/ApiConfigModal';
 import { WalletConnect } from './components/WalletConnect';
+import { NetworkSelector } from './components/NetworkSelector';
 import { WalletContextProvider } from './contexts/WalletContext';
 import { connection } from './utils/solanaClient';
 
@@ -74,27 +75,48 @@ function App() {
               📡 Last Updated: {lastUpdated.toLocaleTimeString()}
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:space-x-3">
-            <div className="order-1 sm:order-none">
+          <div className="flex flex-col gap-3">
+            {/* Network selector row */}
+            <div>
+              <NetworkSelector 
+                currentNetwork={localStorage.getItem('selectedNetwork') as any || 'devnet'}
+                onNetworkChange={(network) => {
+                  if (confirm(`Switch to ${network}? This will reload the page.`)) {
+                    localStorage.setItem('selectedNetwork', network);
+                    window.location.reload();
+                  }
+                }}
+              />
+            </div>
+            
+            {/* Wallet row */}
+            <div>
               <WalletConnect />
             </div>
-            <button
-              onClick={() => setShowApiModal(true)}
-              className="px-3 lg:px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg text-sm lg:text-base"
-            >
-              <span>🔑</span>
-              <span>Premium APIs</span>
-            </button>
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`px-3 lg:px-4 py-2 rounded-lg transition-colors text-sm lg:text-base ${
-                darkMode 
-                  ? 'bg-gray-700 hover:bg-gray-600 text-white' 
-                  : 'bg-white hover:bg-gray-50 text-gray-900 shadow'
-              }`}
-            >
-              {darkMode ? '☀️' : '🌙'} {darkMode ? 'Light' : 'Dark'} Mode
-            </button>
+            
+            {/* Bottom row: Action buttons */}
+            <div className="flex gap-2">
+              <button
+                onClick={() => setShowApiModal(true)}
+                className="flex-1 sm:flex-none px-3 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg text-sm"
+              >
+                <span>🔑</span>
+                <span className="hidden xs:inline">Premium APIs</span>
+                <span className="xs:hidden">APIs</span>
+              </button>
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className={`flex-1 sm:flex-none px-3 py-2 rounded-lg transition-colors text-sm flex items-center justify-center space-x-1 ${
+                  darkMode 
+                    ? 'bg-gray-700 hover:bg-gray-600 text-white' 
+                    : 'bg-white hover:bg-gray-50 text-gray-900 shadow'
+                }`}
+              >
+                <span>{darkMode ? '☀️' : '🌙'}</span>
+                <span className="hidden xs:inline">{darkMode ? 'Light' : 'Dark'} Mode</span>
+                <span className="xs:hidden">{darkMode ? 'Light' : 'Dark'}</span>
+              </button>
+            </div>
           </div>
         </div>
 
