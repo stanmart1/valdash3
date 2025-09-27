@@ -30,14 +30,6 @@ function App() {
   });
 
   useEffect(() => {
-    // Force devnet if mainnet is selected (to avoid 403 errors)
-    const currentNetwork = localStorage.getItem('selectedNetwork');
-    if (currentNetwork === 'mainnet-beta') {
-      localStorage.setItem('selectedNetwork', 'devnet');
-      window.location.reload();
-      return;
-    }
-    
     // Test connection on app load
     const testConnection = async () => {
       try {
