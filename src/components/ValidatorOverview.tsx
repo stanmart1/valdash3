@@ -37,8 +37,8 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
   if (isLoading) {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-        <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Validator Overview</h2>
-        <div className="animate-pulse text-gray-600 dark:text-gray-300">Loading...</div>
+        <h2 className="text-xl font-semibold mb-4 text-primary">Validator Overview</h2>
+        <div className="animate-pulse text-secondary">Loading...</div>
       </div>
     );
   }
@@ -46,13 +46,13 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
   if (error) {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-        <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Validator Overview</h2>
+        <h2 className="text-xl font-semibold mb-4 text-primary">Validator Overview</h2>
         <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
           <div className="flex items-center space-x-2 mb-2">
             <span className="text-red-500">⚠️</span>
-            <span className="font-semibold text-red-700 dark:text-red-400">Connection Error</span>
+            <span className="font-semibold text-red-700 dark:text-red-300">Connection Error</span>
           </div>
-          <p className="text-sm text-red-600 dark:text-red-400 mb-3">
+          <p className="text-sm text-red-600 dark:text-red-300 mb-3">
             {error.includes('403') ? 'RPC endpoint access denied. Using fallback connection.' : error}
           </p>
           <button 
@@ -74,13 +74,13 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
         <div className="flex items-center space-x-2 min-w-0">
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white truncate">🏛️ Validator Overview</h2>
+          <h2 className="text-lg sm:text-xl font-semibold text-primary truncate">🏛️ Validator Overview</h2>
           <div className="px-2 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs rounded-full whitespace-nowrap">
             ✨ Premium
           </div>
         </div>
         <div className="flex items-center space-x-2 flex-shrink-0">
-          <span className="text-xs text-gray-500 dark:text-gray-400 hidden sm:inline">
+          <span className="text-xs text-subtle hidden sm:inline">
             Updated: {new Date().toLocaleTimeString()}
           </span>
           <button 
@@ -99,15 +99,15 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
           <div className="text-2xl font-bold text-green-600 dark:text-green-400">
             {validatorInfo?.voteAccount ? '✅' : '⚠️'}
           </div>
-          <div className="text-sm text-gray-700 dark:text-gray-300">Status</div>
-          <div className="font-semibold text-gray-900 dark:text-white">
+          <div className="text-sm text-secondary">Status</div>
+          <div className="font-semibold text-primary">
             {validatorInfo?.voteAccount ? 'Active' : 'Inactive'}
           </div>
         </div>
         
         <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 rounded-lg border border-blue-100 dark:border-blue-800">
-          <div className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white break-all">{currentSlot?.toLocaleString()}</div>
-          <div className="text-sm text-gray-700 dark:text-gray-300">Current Slot</div>
+          <div className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-primary break-all">{currentSlot?.toLocaleString()}</div>
+          <div className="text-sm text-secondary">Current Slot</div>
           {validatorInfo?.lastVote && (
             <div className="text-xs text-blue-700 dark:text-blue-300 break-all">
               Last Vote: {validatorInfo.lastVote.toLocaleString()}
@@ -116,8 +116,8 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
         </div>
         
         <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-lg border border-purple-100 dark:border-purple-800">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{epochInfo?.epoch}</div>
-          <div className="text-sm text-gray-700 dark:text-gray-300">Epoch</div>
+          <div className="text-2xl font-bold text-primary">{epochInfo?.epoch}</div>
+          <div className="text-sm text-secondary">Epoch</div>
           {validatorInfo?.commission !== undefined && (
             <div className="text-xs text-purple-700 dark:text-purple-300">
               {validatorInfo.commission}% Commission
@@ -126,8 +126,8 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
         </div>
         
         <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/30 dark:to-red-900/30 rounded-lg border border-orange-100 dark:border-orange-800">
-          <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white truncate">{version?.['solana-core']}</div>
-          <div className="text-sm text-gray-700 dark:text-gray-300">Version</div>
+          <div className="text-xl sm:text-2xl font-bold text-primary truncate">{version?.['solana-core']}</div>
+          <div className="text-sm text-secondary">Version</div>
           {validatorInfo?.credits && (
             <div className="text-xs text-orange-700 dark:text-orange-300 truncate">
               {validatorInfo.credits.toLocaleString()} Credits
@@ -138,8 +138,8 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
 
       <div className="mt-6">
         <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-gray-600 dark:text-gray-400">Epoch Progress</span>
-          <span className="text-sm font-semibold text-gray-900 dark:text-white">{epochProgress.toFixed(1)}%</span>
+          <span className="text-sm text-muted">Epoch Progress</span>
+          <span className="text-sm font-semibold text-primary">{epochProgress.toFixed(1)}%</span>
         </div>
         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
           <div 
@@ -148,7 +148,7 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
           />
         </div>
         {epochInfo && (
-          <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          <div className="text-xs text-subtle mt-1">
             Slot {epochInfo.slotIndex.toLocaleString()} of {epochInfo.slotsInEpoch.toLocaleString()}
           </div>
         )}
@@ -156,7 +156,7 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
 
       {performanceError && (
         <div className="mt-6 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-          <p className="text-sm text-red-600 dark:text-red-400">⚠️ Performance data unavailable: {performanceError}</p>
+          <p className="text-sm text-red-600 dark:text-red-300">⚠️ Performance data unavailable: {performanceError}</p>
         </div>
       )}
 
@@ -164,32 +164,32 @@ export const ValidatorOverview = ({ validatorKey }: ValidatorOverviewProps) => {
         <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
             <div className="text-lg font-bold text-green-700 dark:text-green-400">{performance.blockProductionRate.toFixed(1)}%</div>
-            <div className="text-xs text-gray-700 dark:text-gray-300">Block Production</div>
+            <div className="text-xs text-secondary">Block Production</div>
           </div>
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
             <div className="text-lg font-bold text-blue-700 dark:text-blue-400">{performance.voteSuccessRate.toFixed(1)}%</div>
-            <div className="text-xs text-gray-700 dark:text-gray-300">Vote Success</div>
+            <div className="text-xs text-secondary">Vote Success</div>
           </div>
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
             <div className="text-lg font-bold text-yellow-700 dark:text-yellow-400">{performance.skipRate.toFixed(1)}%</div>
-            <div className="text-xs text-gray-700 dark:text-gray-300">Skip Rate</div>
+            <div className="text-xs text-secondary">Skip Rate</div>
           </div>
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
             <div className="text-lg font-bold text-purple-700 dark:text-purple-400">{performance.uptime.toFixed(1)}%</div>
-            <div className="text-xs text-gray-700 dark:text-gray-300">Uptime</div>
+            <div className="text-xs text-secondary">Uptime</div>
           </div>
         </div>
       )}
 
       <div className="mt-6 text-center">
-        <div className="text-lg text-gray-900 dark:text-white">
+        <div className="text-lg text-primary">
           Network: <span className="text-green-500 font-semibold">✅ Healthy</span>
         </div>
-        <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+        <div className="text-sm text-muted mt-1">
           {networkStats?.totalValidators || 0} validators, {((networkStats?.totalStake || 0) / 1e9).toFixed(0)}M SOL staked
         </div>
         {validatorKey && (
-          <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded break-all">
+          <div className="text-xs text-subtle mt-2 font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded break-all">
             {validatorKey}
           </div>
         )}

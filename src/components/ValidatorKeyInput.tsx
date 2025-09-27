@@ -120,7 +120,7 @@ export const ValidatorKeyInput = ({ onValidatorSet, currentValidator }: Validato
       className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6"
     >
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+        <h2 className="text-xl font-semibold text-primary">
           🔑 Validator Configuration
         </h2>
         {currentValidator && (
@@ -134,16 +134,16 @@ export const ValidatorKeyInput = ({ onValidatorSet, currentValidator }: Validato
       <div className="space-y-4">
         <div className="relative">
           <div className="flex items-center justify-between mb-2">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label className="block text-sm font-medium text-secondary">
               Search or Enter Validator Public Key
             </label>
             <div className="group relative">
-              <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-sm">
+              <button className="text-subtle hover:text-secondary text-sm">
                 ℹ️ Help
               </button>
               <div className="absolute right-0 top-6 w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20">
-                <h4 className="font-semibold text-sm text-gray-900 dark:text-white mb-2">How to use this dashboard:</h4>
-                <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
+                <h4 className="font-semibold text-sm text-primary mb-2">How to use this dashboard:</h4>
+                <ul className="text-xs text-muted space-y-1">
                   <li>• Search by validator name or paste a public key</li>
                   <li>• Use sample validators to explore features</li>
                   <li>• View network data without entering a key</li>
@@ -163,7 +163,7 @@ export const ValidatorKeyInput = ({ onValidatorSet, currentValidator }: Validato
                   onKeyPress={handleKeyPress}
                   onFocus={() => searchQuery.length > 2 && setShowDropdown(true)}
                   placeholder="Search by name or enter public key..."
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white pr-10"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-card text-primary pr-10"
                 />
                 {isValidating && (
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
@@ -200,12 +200,12 @@ export const ValidatorKeyInput = ({ onValidatorSet, currentValidator }: Validato
                     >
                       <div className="flex justify-between items-center">
                         <div>
-                          <div className="font-medium text-gray-900 dark:text-white">{validator.name}</div>
-                          <div className="text-sm text-gray-500 dark:text-gray-400 font-mono">
+                          <div className="font-medium text-primary">{validator.name}</div>
+                          <div className="text-sm text-subtle font-mono">
                             {validator.key.slice(0, 8)}...{validator.key.slice(-8)}
                           </div>
                         </div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">
+                        <div className="text-sm text-secondary">
                           {(validator.stake / 1000).toFixed(0)}K SOL
                         </div>
                       </div>

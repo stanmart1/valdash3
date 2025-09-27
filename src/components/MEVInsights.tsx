@@ -69,11 +69,11 @@ export const MEVInsights = ({ validatorKey }: MEVInsightsProps) => {
   if (!mevData) {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-        <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">🚀 MEV Analytics</h2>
+        <h2 className="text-xl font-semibold mb-4 text-primary">🚀 MEV Analytics</h2>
         <div className="text-center py-8">
           <div className="text-4xl mb-4">🔑</div>
-          <p className="text-gray-600 dark:text-gray-400 mb-2">MEV data requires API configuration</p>
-          <p className="text-sm text-gray-500 dark:text-gray-500">Configure Jito Labs API key to view MEV metrics</p>
+          <p className="text-secondary mb-2">MEV data requires API configuration</p>
+          <p className="text-sm text-muted">Configure Jito Labs API key to view MEV metrics</p>
         </div>
       </div>
     );
@@ -87,7 +87,7 @@ export const MEVInsights = ({ validatorKey }: MEVInsightsProps) => {
       className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
     >
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+        <h2 className="text-xl font-semibold text-primary">
           🚀 MEV Analytics
         </h2>
         <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
@@ -111,7 +111,7 @@ export const MEVInsights = ({ validatorKey }: MEVInsightsProps) => {
           className="text-center p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg border border-green-100 dark:border-green-800"
         >
           <div className="text-3xl font-bold text-green-600">{mevData.mevCaptured.toFixed(1)} SOL</div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">MEV Captured</div>
+          <div className="text-sm text-secondary">MEV Captured</div>
           <div className="text-xs text-green-600 dark:text-green-400 mt-1">
             ~${(mevData.mevCaptured * 23.5).toFixed(0)} USD
           </div>
@@ -122,7 +122,7 @@ export const MEVInsights = ({ validatorKey }: MEVInsightsProps) => {
           className="text-center p-4 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg border border-blue-100 dark:border-blue-800"
         >
           <div className="text-3xl font-bold text-blue-600">{mevData.bundleSuccessRate.toFixed(1)}%</div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Bundle Success Rate</div>
+          <div className="text-sm text-secondary">Bundle Success Rate</div>
           <div className="text-xs text-blue-600 dark:text-blue-400 mt-1">
             {mevData.successfulBundles}/{mevData.totalBundles} bundles
           </div>
@@ -133,7 +133,7 @@ export const MEVInsights = ({ validatorKey }: MEVInsightsProps) => {
           className="text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg border border-purple-100 dark:border-purple-800"
         >
           <div className="text-3xl font-bold text-purple-600">+{mevData.additionalAPR.toFixed(1)}%</div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Additional APR</div>
+          <div className="text-sm text-secondary">Additional APR</div>
           <div className="text-xs text-purple-600 dark:text-purple-400 mt-1">
             From MEV rewards
           </div>
@@ -143,7 +143,7 @@ export const MEVInsights = ({ validatorKey }: MEVInsightsProps) => {
       <div className="space-y-4">
         <div className="flex justify-between items-center p-4 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 rounded-lg border border-orange-100 dark:border-orange-800">
           <div>
-            <span className="text-gray-600 dark:text-gray-400">Average MEV per Bundle</span>
+            <span className="text-secondary">Average MEV per Bundle</span>
             <div className="text-xs text-orange-600 dark:text-orange-400">
               Based on successful bundles
             </div>
@@ -153,13 +153,13 @@ export const MEVInsights = ({ validatorKey }: MEVInsightsProps) => {
         
         <div className="grid grid-cols-2 gap-4">
           <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-            <div className="text-sm text-gray-600 dark:text-gray-400">Total Bundles</div>
-            <div className="text-lg font-semibold text-gray-900 dark:text-white">{mevData.totalBundles.toLocaleString()}</div>
+            <div className="text-sm text-secondary">Total Bundles</div>
+            <div className="text-lg font-semibold text-primary">{mevData.totalBundles.toLocaleString()}</div>
           </div>
           
           <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-            <div className="text-sm text-gray-600 dark:text-gray-400">Success Rate</div>
-            <div className="text-lg font-semibold text-gray-900 dark:text-white">{mevData.bundleSuccessRate.toFixed(1)}%</div>
+            <div className="text-sm text-secondary">Success Rate</div>
+            <div className="text-lg font-semibold text-primary">{mevData.bundleSuccessRate.toFixed(1)}%</div>
           </div>
         </div>
       </div>

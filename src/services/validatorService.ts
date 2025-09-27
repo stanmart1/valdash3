@@ -92,7 +92,9 @@ export class ValidatorService {
       const epochInfo = await this.executeWithFallback(conn => conn.getEpochInfo());
       const blockProduction = await this.executeWithFallback(conn => conn.getBlockProduction());
       
-      const validatorStats = blockProduction.value.byIdentity[validatorKey];
+      const validatorStats = Object.prototype.hasOwnProperty.call(blockProduction.value.byIdentity, validatorKey) 
+        ? blockProduction.value.byIdentity[validatorKey] 
+        : null;
       const blockProductionRate = validatorStats ? 
         (validatorStats[1] / (validatorStats[0] + validatorStats[1])) * 100 : 0;
       

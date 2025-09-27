@@ -77,7 +77,7 @@ export const PerformanceMetrics = ({ validatorKey }: PerformanceMetricsProps) =>
       className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
     >
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+        <h2 className="text-xl font-semibold text-primary">
           📊 Performance Metrics
         </h2>
         <div className="flex items-center space-x-2">
@@ -124,7 +124,7 @@ export const PerformanceMetrics = ({ validatorKey }: PerformanceMetricsProps) =>
               {getPerformanceBadge(performance.blockProductionRate, { excellent: PERFORMANCE_THRESHOLDS.EXCELLENT_VOTE_SUCCESS, good: PERFORMANCE_THRESHOLDS.GOOD_VOTE_SUCCESS })}
             </span>
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Block Production</div>
+          <div className="text-sm text-secondary">Block Production</div>
           <div className="text-xs text-green-600 dark:text-green-400 mt-1">
             {epochInfo ? `Epoch ${epochInfo.epoch}` : 'Current epoch'}
           </div>
@@ -142,7 +142,7 @@ export const PerformanceMetrics = ({ validatorKey }: PerformanceMetricsProps) =>
               {getPerformanceBadge(performance.voteSuccessRate, { excellent: PERFORMANCE_THRESHOLDS.EXCELLENT_VOTE_SUCCESS, good: PERFORMANCE_THRESHOLDS.GOOD_VOTE_SUCCESS })}
             </span>
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Vote Success</div>
+          <div className="text-sm text-secondary">Vote Success</div>
           <div className="text-xs text-blue-600 dark:text-blue-400 mt-1">
             {validatorInfo?.lastVote ? `Last: ${validatorInfo.lastVote.toLocaleString()}` : 'Voting active'}
           </div>
@@ -160,7 +160,7 @@ export const PerformanceMetrics = ({ validatorKey }: PerformanceMetricsProps) =>
               {getPerformanceBadge(performance.skipRate, { excellent: PERFORMANCE_THRESHOLDS.LOW_SKIP_RATE, good: PERFORMANCE_THRESHOLDS.HIGH_SKIP_RATE }, true)}
             </span>
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Skip Rate</div>
+          <div className="text-sm text-secondary">Skip Rate</div>
           <div className="text-xs text-yellow-600 dark:text-yellow-400 mt-1">
             {missedBlocks} missed blocks
           </div>
@@ -178,7 +178,7 @@ export const PerformanceMetrics = ({ validatorKey }: PerformanceMetricsProps) =>
               {getPerformanceBadge(performance.uptime, { excellent: PERFORMANCE_THRESHOLDS.EXCELLENT_UPTIME, good: PERFORMANCE_THRESHOLDS.GOOD_UPTIME })}
             </span>
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Uptime</div>
+          <div className="text-sm text-secondary">Uptime</div>
           <div className="text-xs text-purple-600 dark:text-purple-400 mt-1">
             ~{performance.averageSlotTime}ms avg slot
           </div>
@@ -188,22 +188,22 @@ export const PerformanceMetrics = ({ validatorKey }: PerformanceMetricsProps) =>
       <div className="space-y-3">
         <div className="flex justify-between items-center p-4 bg-gradient-to-r from-gray-50 to-slate-50 dark:from-gray-700 dark:to-slate-700 rounded-lg border border-gray-100 dark:border-gray-600">
           <div>
-            <span className="text-gray-600 dark:text-gray-400">Missed Blocks</span>
-            <div className="text-xs text-gray-500 dark:text-gray-400">
+            <span className="text-secondary">Missed Blocks</span>
+            <div className="text-xs text-subtle">
               Current epoch performance
             </div>
           </div>
-          <span className="font-bold text-xl text-gray-900 dark:text-white">{missedBlocks.toLocaleString()}</span>
+          <span className="font-bold text-xl text-primary">{missedBlocks.toLocaleString()}</span>
         </div>
         
         <div className="flex justify-between items-center p-4 bg-gradient-to-r from-gray-50 to-slate-50 dark:from-gray-700 dark:to-slate-700 rounded-lg border border-gray-100 dark:border-gray-600">
           <div>
-            <span className="text-gray-600 dark:text-gray-400">Total Credits</span>
-            <div className="text-xs text-gray-500 dark:text-gray-400">
+            <span className="text-secondary">Total Credits</span>
+            <div className="text-xs text-subtle">
               Accumulated epoch credits
             </div>
           </div>
-          <span className="font-bold text-xl text-gray-900 dark:text-white">{totalBlocks.toLocaleString()}</span>
+          <span className="font-bold text-xl text-primary">{totalBlocks.toLocaleString()}</span>
         </div>
       </div>
       

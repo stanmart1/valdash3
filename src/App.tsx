@@ -78,8 +78,8 @@ function App() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-6 lg:mb-8 gap-4">
           <div className="min-w-0">
-            <h1 className="text-2xl lg:text-3xl font-bold truncate">Validator Dashboard</h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-1 text-sm lg:text-base">
+            <h1 className="text-2xl lg:text-3xl font-bold text-primary truncate">Validator Dashboard</h1>
+            <p className="text-muted mt-1 text-sm lg:text-base">
               📡 Last Updated: {lastUpdated.toLocaleTimeString()}
             </p>
           </div>
@@ -106,8 +106,8 @@ function App() {
                 onClick={() => setDarkMode(!darkMode)}
                 className={`px-3 py-2 rounded-lg transition-colors text-sm font-medium flex items-center space-x-2 ${
                   darkMode 
-                    ? 'bg-gray-700 hover:bg-gray-600 text-white border border-gray-600' 
-                    : 'bg-white hover:bg-gray-50 text-gray-900 shadow border border-gray-200'
+                    ? 'bg-gray-700 hover:bg-gray-600 text-gray-100 border border-gray-600' 
+                    : 'bg-white hover:bg-gray-50 text-gray-800 shadow border border-gray-200'
                 }`}
               >
                 <span>{darkMode ? '☀️' : '🌙'}</span>
@@ -148,7 +148,7 @@ function App() {
         <LastUpdated />
 
         {/* Footer */}
-        <div className="mt-12 text-center text-gray-500 text-sm">
+        <div className="mt-12 text-center text-subtle text-sm">
           <p>Validator Dashboard - Real-time Solana network monitoring with MEV insights</p>
           <p className="mt-1">Built with React, TypeScript, and Solana Web3.js</p>
         </div>

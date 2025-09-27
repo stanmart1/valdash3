@@ -52,30 +52,30 @@ export const NetworkStatus = () => {
   if (networkData.isLoading) {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-        <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Network Status</h2>
-        <div className="animate-pulse text-gray-600 dark:text-gray-300">Loading network data...</div>
+        <h2 className="text-xl font-semibold mb-4 text-primary">Network Status</h2>
+        <div className="animate-pulse text-secondary">Loading network data...</div>
       </div>
     );
   }
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Network Status</h2>
+      <h2 className="text-xl font-semibold mb-4 text-primary">Network Status</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="text-center p-4 bg-green-50 rounded-lg">
-          <div className="text-2xl font-bold text-green-600">{networkData.health}</div>
-          <div className="text-sm text-gray-600">Network Health</div>
+        <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-100 dark:border-green-800">
+          <div className="text-2xl font-bold text-green-600 dark:text-green-400">{networkData.health}</div>
+          <div className="text-sm text-secondary">Network Health</div>
         </div>
         
-        <div className="text-center p-4 bg-blue-50 rounded-lg">
-          <div className="text-2xl font-bold text-blue-600">{networkData.nodeCount.toLocaleString()}</div>
-          <div className="text-sm text-gray-600">Active Nodes</div>
+        <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
+          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{networkData.nodeCount.toLocaleString()}</div>
+          <div className="text-sm text-secondary">Active Nodes</div>
         </div>
         
-        <div className="text-center p-4 bg-purple-50 rounded-lg">
-          <div className="text-2xl font-bold text-purple-600">{networkData.tps.toLocaleString()}</div>
-          <div className="text-sm text-gray-600">TPS</div>
+        <div className="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-100 dark:border-purple-800">
+          <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{networkData.tps.toLocaleString()}</div>
+          <div className="text-sm text-secondary">TPS</div>
         </div>
       </div>
     </div>
