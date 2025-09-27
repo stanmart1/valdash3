@@ -1,10 +1,11 @@
 import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { WalletMultiButton, useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { useBalance } from '../hooks/useBalance';
 
 export const WalletConnect = () => {
   const { connected, publicKey } = useWallet();
   const { balance, loading } = useBalance();
+  const { setVisible } = useWalletModal();
 
   return (
     <div className="flex gap-2 w-full">
@@ -30,7 +31,10 @@ export const WalletConnect = () => {
       {/* Wallet Button */}
       <div className="flex-1">
         {!connected ? (
-          <button className="bg-purple-500 hover:bg-purple-600 rounded-lg transition-colors text-sm px-3 py-2 w-full justify-center flex items-center space-x-1 text-white font-medium">
+          <button 
+            onClick={() => setVisible(true)}
+            className="bg-purple-500 hover:bg-purple-600 rounded-lg transition-colors text-sm px-3 py-2 w-full justify-center flex items-center space-x-1 text-white font-medium"
+          >
             Select Wallet
           </button>
         ) : (

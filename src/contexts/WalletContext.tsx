@@ -1,7 +1,12 @@
 import { ReactNode } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { 
+  PhantomWalletAdapter,
+  SolflareWalletAdapter,
+  BackpackWalletAdapter,
+  TrustWalletAdapter
+} from '@solana/wallet-adapter-wallets';
 
 import '@solana/wallet-adapter-react-ui/styles.css';
 
@@ -23,7 +28,10 @@ export const WalletContextProvider = ({ children }: WalletContextProviderProps) 
   };
   const endpoint = import.meta.env.VITE_SOLANA_RPC_URL || getRpcUrl(selectedNetwork);
   const wallets = [
+    new PhantomWalletAdapter(),
     new SolflareWalletAdapter(),
+    new BackpackWalletAdapter(),
+    new TrustWalletAdapter(),
   ];
 
   return (
